@@ -1,4 +1,5 @@
- var obj = null;
+ ;(function(){
+    var obj = null;
 
     function ImgCompress () {
          //单例模式
@@ -78,3 +79,7 @@
         }
 
     };
+
+    window.ImgCompress = ImgCompress;
+ })();
+    

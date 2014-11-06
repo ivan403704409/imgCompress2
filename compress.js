@@ -68,14 +68,14 @@
             
             oCtx.drawImage(oImg, 0, 0, w, h);
             if( self.quaility ){
-                base64 = self.canvas.toDataURL('image/jpeg', self.quaility);
+               // base64 = self.canvas.toDataURL('image/jpeg', self.quaility);
             }else{
-                base64 = self.canvas.toDataURL('image/jpeg');
+               // base64 = self.canvas.toDataURL('image/jpeg');
             }
             
 
             //压缩完后执行回调
-            self.callback && self.callback(base64);
+           // self.callback && self.callback(base64);
         }
 
     };

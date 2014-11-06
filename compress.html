@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+	<title></title>
+	<script src="compress.js"></script>
+</head>
+<body>
+<input id="oFile" type="file">
+
+<script>
+	var oImgCompress = new ImgCompress();
+	var oFile = document.getElementById('oFile');
+
+	oFile.onchange = function (){
+		var file = this;
+		oImgCompress.init(file, 0.1, function (data){
+			console.log(data);
+		});
+	}
+
+</script>
+</body>
+</html>

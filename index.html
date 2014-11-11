@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>NEC：更好的CSS方案</title>
+<meta name="keywords" content=""/>
+<meta name="description" content=""/>
+</head>
+<body>
+  <input id="file1" type="file">
+  <canvas id="canvas"></canvas>
+ <script>
+
+var oFile   = document.getElementById('file1'),
+	oCanvas = document.getElementById('canvas');
+
+oFile.onchange = function ()
+{
+	var file = this.files[0];
+    var url = webkitURL.createObjectURL(file);
+
+        /* 生成图片
+        * ---------------------- */
+        var oImg = new Image();
+        oImg.src = url;
+
+        oImg.onload = function()
+        {
+
+            //生成比例
+            var width  = oImg.width,
+                height = oImg.height,
+                scale  = width / height;
+            width  = parseInt(800);
+            height = parseInt(width / scale);
+
+            //生成canvas
+            var ctx = oCanvas.getContext('2d');
+            oCanvas.width  = width ;
+            oCanvas.height = height ;
+
+            //把图画在canvas上
+            //drawImage(imageObj,sourceX,sourceY,sourceWidth,sourcHeight,destX,destY,destWidth,destHeight)
+            ctx.drawImage(oImg, 0, 0, width, height);
+
+            //压缩图片
+            var base64 = oCanvas.toDataURL('image/jpeg',0.5);
+            console.log(base64)
+        }
+
+
+}
+
+
+ </script>
+</body>
+</html>

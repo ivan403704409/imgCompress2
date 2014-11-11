@@ -42,8 +42,8 @@
 
         //获取file中的上传图片
         _getImgFromFile: function(){  
-            var self = this,
-                url = webkitURL.createObjectURL( self.file.files[0] ),
+            var self = this;
+            var url = webkitURL.createObjectURL( self.file.files[0] ),
                 oImg = new Image();
 
             oImg.src = url;
@@ -63,19 +63,21 @@
                 base64 = '',
                 oCtx = this.canvas.getContext('2d');
 
-            self.canvas.style.width = w + 'px';
-            self.canvas.style.height = h + 'px';
+            self.canvas.width = 800;
+            self.canvas.height = 800;
             
-            oCtx.drawImage(oImg, 0, 0, w, h);
+            //drawImage(imageObj,sourceX,sourceY,sourceWidth,sourcHeight,destX,destY,destWidth,destHeight)
+            //截图( 图像， 原图的剪切起点X， 原图的剪切起点Y，剪切的宽度， 剪切的高度， 剪切结束点X， 剪切结束点Y，   )
+            oCtx.drawImage(oImg, 600, 1090, 1920, 1080, 0, 0, 400, 400);
             if( self.quaility ){
-               // base64 = self.canvas.toDataURL('image/jpeg', self.quaility);
+                base64 = self.canvas.toDataURL('image/jpeg', self.quaility);
             }else{
-               // base64 = self.canvas.toDataURL('image/jpeg');
+                base64 = self.canvas.toDataURL('image/jpeg');
             }
             
 
             //压缩完后执行回调
-           // self.callback && self.callback(base64);
+            self.callback && self.callback(base64);
         }
 
     };

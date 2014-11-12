@@ -6,16 +6,25 @@
 	<script src="compress.js"></script>
 </head>
 <body>
-<input id="oFile" type="file">
-
+<input id="oFile" type="file"><br>
+<textarea id="txt" name="" id="" cols="80" rows="30"></textarea>
 <script>
 	var oImgCompress = new ImgCompress();
 	var oFile = document.getElementById('oFile');
+	var oTxt = document.getElementById('txt');
 
 	oFile.onchange = function (){
 		var file = this;
-		oImgCompress.init(file, 0.1, function (data){
-			console.log(data);
+		oImgCompress.init({
+			file: file,
+			callback: function (response){
+				if( response.success ){
+					file.value = '';
+					oTxt.value = response.data;
+				}else{
+
+				}
+			}
 		});
 	}
 
